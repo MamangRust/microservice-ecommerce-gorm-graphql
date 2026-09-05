@@ -1,0 +1,372 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "github.com/MamangRust/microservice-ecommerce-shared/pb";
+
+// ── Category stats requests ───────────────────────────────────────────────
+
+message FindYearCategory {
+    int32 year = 1;
+}
+
+message FindYearCategoryByMerchant {
+    int32 merchant_id = 1;
+    int32 year = 2;
+}
+
+message FindYearCategoryById {
+    int32 category_id = 1;
+    int32 year = 2;
+}
+
+message FindYearMonthTotalPrices {
+    int32 year = 1;
+    int32 month = 2;
+}
+
+message FindYearTotalPrices {
+    int32 year = 1;
+}
+
+message FindYearMonthTotalPriceById {
+    int32 year = 1;
+    int32 month = 2;
+    int32 category_id = 3;
+}
+
+message FindYearTotalPriceById {
+    int32 year = 1;
+    int32 category_id = 2;
+}
+
+message FindYearMonthTotalPriceByMerchant {
+    int32 year = 1;
+    int32 month = 2;
+    int32 merchant_id = 3;
+}
+
+message FindYearTotalPriceByMerchant {
+    int32 year = 1;
+    int32 merchant_id = 2;
+}
+
+// ── Category stats responses ──────────────────────────────────────────────
+
+message CategoryMonthPriceResponse {
+    string month = 1;
+    int32 category_id = 2;
+    string category_name = 3;
+    int32 order_count = 4;
+    int32 items_sold = 5;
+    int32 total_revenue = 6;
+}
+
+message CategoryYearPriceResponse {
+    string year = 1;
+    int32 category_id = 2;
+    string category_name = 3;
+    int32 order_count = 4;
+    int32 items_sold = 5;
+    int32 total_revenue = 6;
+    int32 unique_products_sold = 7;
+}
+
+message ApiResponseCategoryMonthPrice {
+    string status = 1;
+    string message = 2;
+    repeated CategoryMonthPriceResponse data = 3;
+}
+
+message ApiResponseCategoryYearPrice {
+    string status = 1;
+    string message = 2;
+    repeated CategoryYearPriceResponse data = 3;
+}
+
+message CategoriesMonthlyTotalPriceResponse {
+    string year = 1;
+    string month = 2;
+    int32 total_revenue = 3;
+}
+
+message CategoriesYearlyTotalPriceResponse {
+    string year = 1;
+    int32 total_revenue = 2;
+}
+
+message ApiResponseCategoryMonthlyTotalPrice {
+    string status = 1;
+    string message = 2;
+    repeated CategoriesMonthlyTotalPriceResponse data = 3;
+}
+
+message ApiResponseCategoryYearlyTotalPrice {
+    string status = 1;
+    string message = 2;
+    repeated CategoriesYearlyTotalPriceResponse data = 3;
+}
+
+// ── Order stats requests ──────────────────────────────────────────────────
+
+message FindYearOrder {
+    int32 year = 1;
+}
+
+message FindYearOrderByMerchant {
+    int32 merchant_id = 1;
+    int32 year = 2;
+}
+
+message FindYearMonthTotalRevenue {
+    int32 year = 1;
+    int32 month = 2;
+}
+
+message FindYearTotalRevenue {
+    int32 year = 1;
+}
+
+message FindYearMonthTotalRevenueByMerchant {
+    int32 year = 1;
+    int32 month = 2;
+    int32 merchant_id = 3;
+}
+
+message FindYearTotalRevenueByMerchant {
+    int32 year = 1;
+    int32 merchant_id = 2;
+}
+
+// ── Order stats responses ─────────────────────────────────────────────────
+
+message OrderMonthlyResponse {
+    string month = 1;
+    int32 order_count = 2;
+    int32 total_revenue = 3;
+    int32 total_items_sold = 4;
+}
+
+message OrderYearlyResponse {
+    string year = 1;
+    int32 order_count = 2;
+    int32 total_revenue = 3;
+    int32 total_items_sold = 4;
+    int32 active_cashiers = 5;
+    int32 unique_products_sold = 6;
+}
+
+message OrderMonthlyTotalRevenueResponse {
+    string year = 1;
+    string month = 2;
+    int32 order_count = 3;
+    int32 total_revenue = 4;
+    int32 total_items_sold = 5;
+}
+
+message OrderYearlyTotalRevenueResponse {
+    string year = 1;
+    int32 order_count = 2;
+    int32 total_revenue = 3;
+    int32 total_items_sold = 4;
+}
+
+message ApiResponseOrderMonthly {
+    string status = 1;
+    string message = 2;
+    repeated OrderMonthlyResponse data = 3;
+}
+
+message ApiResponseOrderYearly {
+    string status = 1;
+    string message = 2;
+    repeated OrderYearlyResponse data = 3;
+}
+
+message ApiResponseOrderMonthlyTotalRevenue {
+    string status = 1;
+    string message = 2;
+    repeated OrderMonthlyTotalRevenueResponse data = 3;
+}
+
+message ApiResponseOrderYearlyTotalRevenue {
+    string status = 1;
+    string message = 2;
+    repeated OrderYearlyTotalRevenueResponse data = 3;
+}
+
+// ── Transaction stats requests ────────────────────────────────────────────
+
+message MonthAmountTransactionRequest {
+    int32 year = 1;
+    int32 month = 2;
+}
+
+message YearAmountTransactionRequest {
+    int32 year = 1;
+}
+
+message MonthMethodTransactionRequest {
+    int32 year = 1;
+    int32 month = 2;
+}
+
+message YearMethodTransactionRequest {
+    int32 year = 1;
+}
+
+message MonthAmountTransactionMerchantRequest {
+    int32 merchant_id = 1;
+    int32 year = 2;
+    int32 month = 3;
+}
+
+message YearAmountTransactionMerchantRequest {
+    int32 merchant_id = 1;
+    int32 year = 2;
+}
+
+message MonthMethodTransactionMerchantRequest {
+    int32 merchant_id = 1;
+    int32 year = 2;
+    int32 month = 3;
+}
+
+message YearMethodTransactionMerchantRequest {
+    int32 merchant_id = 1;
+    int32 year = 2;
+}
+
+// ── Transaction stats responses ───────────────────────────────────────────
+
+message TransactionMonthlyAmountSuccess {
+    string year = 1;
+    string month = 2;
+    int32 total_success = 3;
+    int32 total_amount = 4;
+}
+
+message TransactionMonthlyAmountFailed {
+    string year = 1;
+    string month = 2;
+    int32 total_failed = 3;
+    int32 total_amount = 4;
+}
+
+message TransactionYearlyAmountSuccess {
+    string year = 1;
+    int32 total_success = 2;
+    int32 total_amount = 3;
+}
+
+message TransactionYearlyAmountFailed {
+    string year = 1;
+    int32 total_failed = 2;
+    int32 total_amount = 3;
+}
+
+message TransactionMonthlyMethod {
+    string month = 1;
+    string payment_method = 2;
+    int32 total_transactions = 3;
+    int32 total_amount = 4;
+}
+
+message TransactionYearlyMethod {
+    string year = 1;
+    string payment_method = 2;
+    int32 total_transactions = 3;
+    int32 total_amount = 4;
+}
+
+message ApiResponseTransactionMonthAmountSuccess {
+    string status = 1;
+    string message = 2;
+    repeated TransactionMonthlyAmountSuccess data = 3;
+}
+
+message ApiResponseTransactionYearAmountSuccess {
+    string status = 1;
+    string message = 2;
+    repeated TransactionYearlyAmountSuccess data = 3;
+}
+
+message ApiResponseTransactionMonthAmountFailed {
+    string status = 1;
+    string message = 2;
+    repeated TransactionMonthlyAmountFailed data = 3;
+}
+
+message ApiResponseTransactionYearAmountFailed {
+    string status = 1;
+    string message = 2;
+    repeated TransactionYearlyAmountFailed data = 3;
+}
+
+message ApiResponseTransactionMonthPaymentMethod {
+    string status = 1;
+    string message = 2;
+    repeated TransactionMonthlyMethod data = 3;
+}
+
+message ApiResponseTransactionYearPaymentmethod {
+    string status = 1;
+    string message = 2;
+    repeated TransactionYearlyMethod data = 3;
+}
+
+// ── Services ─────────────────────────────────────────────────────────────
+
+service CategoryStatsService {
+    rpc FindMonthPrice(FindYearCategory) returns (ApiResponseCategoryMonthPrice);
+    rpc FindYearPrice(FindYearCategory) returns (ApiResponseCategoryYearPrice);
+    rpc FindMonthlyTotalPrices(FindYearMonthTotalPrices) returns (ApiResponseCategoryMonthlyTotalPrice);
+    rpc FindYearlyTotalPrices(FindYearTotalPrices) returns (ApiResponseCategoryYearlyTotalPrice);
+}
+
+service CategoryStatsByIdService {
+    rpc FindMonthPriceById(FindYearCategoryById) returns (ApiResponseCategoryMonthPrice);
+    rpc FindYearPriceById(FindYearCategoryById) returns (ApiResponseCategoryYearPrice);
+    rpc FindMonthlyTotalPricesById(FindYearMonthTotalPriceById) returns (ApiResponseCategoryMonthlyTotalPrice);
+    rpc FindYearlyTotalPricesById(FindYearTotalPriceById) returns (ApiResponseCategoryYearlyTotalPrice);
+}
+
+service CategoryStatsByMerchantService {
+    rpc FindMonthPriceByMerchant(FindYearCategoryByMerchant) returns (ApiResponseCategoryMonthPrice);
+    rpc FindYearPriceByMerchant(FindYearCategoryByMerchant) returns (ApiResponseCategoryYearPrice);
+    rpc FindMonthlyTotalPricesByMerchant(FindYearMonthTotalPriceByMerchant) returns (ApiResponseCategoryMonthlyTotalPrice);
+    rpc FindYearlyTotalPricesByMerchant(FindYearTotalPriceByMerchant) returns (ApiResponseCategoryYearlyTotalPrice);
+}
+
+service OrderStatsService {
+    rpc FindMonthlyTotalRevenue(FindYearMonthTotalRevenue) returns (ApiResponseOrderMonthlyTotalRevenue);
+    rpc FindYearlyTotalRevenue(FindYearTotalRevenue) returns (ApiResponseOrderYearlyTotalRevenue);
+    rpc FindMonthlyTotalRevenueByMerchant(FindYearMonthTotalRevenueByMerchant) returns (ApiResponseOrderMonthlyTotalRevenue);
+    rpc FindYearlyTotalRevenueByMerchant(FindYearTotalRevenueByMerchant) returns (ApiResponseOrderYearlyTotalRevenue);
+    rpc FindMonthlyRevenue(FindYearOrder) returns (ApiResponseOrderMonthly);
+    rpc FindYearlyRevenue(FindYearOrder) returns (ApiResponseOrderYearly);
+    rpc FindMonthlyRevenueByMerchant(FindYearOrderByMerchant) returns (ApiResponseOrderMonthly);
+    rpc FindYearlyRevenueByMerchant(FindYearOrderByMerchant) returns (ApiResponseOrderYearly);
+}
+
+service TransactionStatsService {
+    rpc GetMonthlyAmountSuccess(MonthAmountTransactionRequest) returns (ApiResponseTransactionMonthAmountSuccess);
+    rpc GetYearlyAmountSuccess(YearAmountTransactionRequest) returns (ApiResponseTransactionYearAmountSuccess);
+    rpc GetMonthlyAmountFailed(MonthAmountTransactionRequest) returns (ApiResponseTransactionMonthAmountFailed);
+    rpc GetYearlyAmountFailed(YearAmountTransactionRequest) returns (ApiResponseTransactionYearAmountFailed);
+    rpc GetMonthlyTransactionMethodSuccess(MonthMethodTransactionRequest) returns (ApiResponseTransactionMonthPaymentMethod);
+    rpc GetYearlyTransactionMethodSuccess(YearMethodTransactionRequest) returns (ApiResponseTransactionYearPaymentmethod);
+    rpc GetMonthlyTransactionMethodFailed(MonthMethodTransactionRequest) returns (ApiResponseTransactionMonthPaymentMethod);
+    rpc GetYearlyTransactionMethodFailed(YearMethodTransactionRequest) returns (ApiResponseTransactionYearPaymentmethod);
+}
+
+service TransactionStatsByMerchantService {
+    rpc GetMonthlyAmountSuccessByMerchant(MonthAmountTransactionMerchantRequest) returns (ApiResponseTransactionMonthAmountSuccess);
+    rpc GetYearlyAmountSuccessByMerchant(YearAmountTransactionMerchantRequest) returns (ApiResponseTransactionYearAmountSuccess);
+    rpc GetMonthlyAmountFailedByMerchant(MonthAmountTransactionMerchantRequest) returns (ApiResponseTransactionMonthAmountFailed);
+    rpc GetYearlyAmountFailedByMerchant(YearAmountTransactionMerchantRequest) returns (ApiResponseTransactionYearAmountFailed);
+    rpc GetMonthlyTransactionMethodByMerchantSuccess(MonthMethodTransactionMerchantRequest) returns (ApiResponseTransactionMonthPaymentMethod);
+    rpc GetYearlyTransactionMethodByMerchantSuccess(YearMethodTransactionMerchantRequest) returns (ApiResponseTransactionYearPaymentmethod);
+    rpc GetMonthlyTransactionMethodByMerchantFailed(MonthMethodTransactionMerchantRequest) returns (ApiResponseTransactionMonthPaymentMethod);
+    rpc GetYearlyTransactionMethodByMerchantFailed(YearMethodTransactionMerchantRequest) returns (ApiResponseTransactionYearPaymentmethod);
+}
